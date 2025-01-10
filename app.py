@@ -6,7 +6,7 @@ import streamlit as st
 import plotly.express as px
 
 # Load dataset
-car_data = pd.read_csv(r'Datasets\vehicles_us.csv')
+car_data = pd.read_csv('vehicles_us.csv')
 car_data.info()
 car_data.describe()
 car_data
