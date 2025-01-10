@@ -7,30 +7,32 @@ import plotly.express as px
 
 # Load dataset
 car_data = pd.read_csv('vehicles_us.csv')
-car_data.info()
-car_data.describe()
-car_data
 
+# Set header, title and author
+st.header('Best-seller Cars dataframe')
+st.title('Sprint 7 Project')
+st.write('by: Tomas Orduna\n TripleTen Data Science student\n January 2025')
 
-# Clean data
-car_data.isna().count()
+# ============================================================================
+
+## Data Wrangling
 car_data = car_data.dropna()
-car_data
-
-
-# Change dtypes
 car_data['model_year'] = car_data['model_year'].astype(int)
 car_data['date_posted'] = pd.to_datetime(car_data['date_posted'])
 
+# Show data
+car_data.info()
+print()
+car_data.describe()
 
-# Header title
-st.header('Best-seller Cars')
+# ============================================================================
+
+# Set title
+st.title('Sprint 7 Project')
 st.write('by: Tomas Orduna, Data Science student')
 
 
-
 # Histogram button creation
-# hist_button = st.button('Generate histogram')
 build_hist = st.checkbox('Generate histogram')
 
 # Clicking the button
@@ -42,11 +44,10 @@ if build_hist:
 
 
 # Scatter button creation
-# scatter_button = st.button('Generate Scatter Plot')
-build_scatter = st.checkbox('Generate Scatter Plot')
+scatter_button = st.button('Generate Scatter Plot')
 
 # Clicking the button
-if build_scatter:
+if scatter_button:
     
     st.write('Scatter plot generator for the odometer and price in Vehicle Sells datafame')   # Write the message
     fig2 = px.scatter(car_data, x="odometer", y="price")    # Create scatter plot
