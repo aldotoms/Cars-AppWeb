@@ -1,2 +1,6 @@
 # Cars-AppWeb
-Proyecto Sprint 7 del Bootcamp Data Science en TripleTen Latam.
+Sprint 7 Project, Data Science bootcamp of TripleTen Latam.
+
+by: Tomas Orduna
+
+Jan, 2025.
