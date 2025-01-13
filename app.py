@@ -21,11 +21,11 @@ df['model_year'] = df['model_year'].astype(int)
 df['date_posted'] = pd.to_datetime(df['date_posted'])
 
 # Show data
-print(df.info())
+df.info()
 print()
-print(df.describe())
+df.describe()
 print()
-print(df)
+df
 
 # ============================================================================
 
@@ -34,7 +34,6 @@ st.write('In the following buttons, you can view the graphical information of th
 
 
 # Histogram button creation
-#hist_button = st.button('Generate Histogram')
 build_histogram = st.checkbox('Generate Histogram')
 
 # Clicking the button
@@ -44,17 +43,27 @@ if build_histogram:
     fig1 = px.histogram(df, x='odometer', color_discrete_sequence=['indianred'])  # Create histogram
     st.plotly_chart(fig1, use_container_width=True)  # Show an interactive Plotly graph
 
-# -------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------
 
 # Scatter button creation
-#build_scatter = st.checkbox('View Scatter Plot')
 scatter_button = st.button('View Scatter Plot')
 
 # Clicking the button
 if scatter_button:
     
     st.write('Scatter plot generator for the odometer and price in Vehicle Sells dataframe')   # Write the message
-    
-    fig2 = px.scatter(df, x='odometer', y='price', color='petal_length')    # Create scatter plot
+    fig2 = px.scatter(df, x='odometer', y='price')    # Create scatter plot
     st.plotly_chart(fig2, use_container_width=True)     # Show an interactive Scatter plot
 
+# ---------------------------------------------------------------------------------------------------
+
+# Fuel bar creation
+bar_button = st.button('Vreate a Bar Plot')
+
+# Clicking the button
+if bar_button:
+    
+    gb = df.groupby(['model_year', 'fuel'])['odometer'].mean().reset_index()
+    fig = px.bar(gb, x="model_year", y="odometer", color="fuel", barmode="stack", title="Miles per Year model and Fuel type")
+
+# End.
