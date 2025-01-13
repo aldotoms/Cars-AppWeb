@@ -53,7 +53,7 @@ if scatter_button:
     
     st.write('Scatter plot generator for the odometer and price in Vehicle Sells dataframe')   # Write the message
     fig2 = px.scatter(df, x='odometer', y='price')    # Create scatter plot
-    st.plotly_chart(fig2, use_container_width=True)     # Show an interactive Scatter plot
+    st.plotly_chart(fig2, use_container_width=True)     # Show a Scatter plot
 
 # ---------------------------------------------------------------------------------------------------
 
@@ -64,6 +64,7 @@ bar_button = st.button('Vreate a Bar Plot')
 if bar_button:
     
     gb = df.groupby(['model_year', 'fuel'])['odometer'].mean().reset_index()
-    fig = px.bar(gb, x="model_year", y="odometer", color="fuel", barmode="stack", title="Miles per Year model and Fuel type")
+    fig3 = px.bar(gb, x="model_year", y="odometer", color="fuel", barmode="stack", title="Miles per Year model and Fuel type")
+    st.plotly_chart(fig3, use_container_width=True)     # Show a Bar plot
 
 # End.
