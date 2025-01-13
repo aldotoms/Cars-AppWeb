@@ -21,9 +21,11 @@ car_data['model_year'] = car_data['model_year'].astype(int)
 car_data['date_posted'] = pd.to_datetime(car_data['date_posted'])
 
 # Show data
-car_data.info()
+print(car_data.info())
 print()
-car_data.describe()
+print(car_data.describe())
+print()
+print(car_data)
 
 # ============================================================================
 
@@ -32,23 +34,29 @@ st.write('In the following buttons, you can view the graphical information of th
 
 
 # Histogram button creation
-hist_button = st.button('Generate Histogram')
+#hist_button = st.button('Generate Histogram')
+build_histogram = st.checkbox('Generate Histogram')
 
 # Clicking the button
-if hist_button:
+if build_histogram:
         
     st.write('Histogram generator for the odometer in Vehicle Sells dataframe')     # Write the message   
-    fig1 = px.histogram(car_data, x="odometer")  # Create histogram
+    fig1 = px.histogram(car_data, x='odometer', color_discrete_sequence=['indianred'])  # Create histogram
     st.plotly_chart(fig1, use_container_width=True)  # Show an interactive Plotly graph
 
+# -------------------------------------------------------------------------
 
 # Scatter button creation
-build_scatter = st.checkbox('View Scatter Plot')
+#build_scatter = st.checkbox('View Scatter Plot')
+scatter_button = st.button('View Scatter Plot')
 
 # Clicking the button
-if build_scatter:
+if scatter_button:
     
-    st.write('Scatter plot generator for the odometer and price in Vehicle Sells datafame')   # Write the message
-    fig2 = px.scatter(car_data, x="odometer", y="price")    # Create scatter plot
+    st.write('Scatter plot generator for the odometer and price in Vehicle Sells dataframe')   # Write the message
+    
+    car_data = px.data.iris()
+    fig2 = px.scatter(car_data, x='odometer ', y='price', color='petal_length')    # Create scatter plot
+        
     st.plotly_chart(fig2, use_container_width=True)     # Show an interactive Scatter plot
 
